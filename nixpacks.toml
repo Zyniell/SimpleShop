@@ -1,5 +1,0 @@
-[phases.build]
-cmds = ["go build -o main ./cmd/main.go"]
-
-[start]
-cmd = "./main"
