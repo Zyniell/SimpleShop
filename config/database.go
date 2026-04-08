@@ -21,6 +21,13 @@ func InitDB() *sql.DB {
 		os.Getenv("DB_SSLMODE"),
 	)
 
+	log.Printf("Connecting to DB: host=%s port=%s user=%s dbname=%s", host, port, user, dbname)
+
+    dsn := fmt.Sprintf(
+        "host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
+        host, port, user, password, dbname, sslmode,
+    )
+	
 	db, err := sql.Open("postgres", dsn)
 	if err != nil {
 		log.Fatalf("Failed to open database: %v", err)
