@@ -11,15 +11,12 @@ import (
 )
 
 func InitDB() *sql.DB {
-	dsn := fmt.Sprintf(
-		"host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
-		os.Getenv("DB_HOST"),
-		os.Getenv("DB_PORT"),
-		os.Getenv("DB_USER"),
-		os.Getenv("DB_PASSWORD"),
-		os.Getenv("DB_NAME"),
-		os.Getenv("DB_SSLMODE"),
-	)
+	host     := os.Getenv("DB_HOST")
+    port     := os.Getenv("DB_PORT")
+    user     := os.Getenv("DB_USER")
+    password := os.Getenv("DB_PASSWORD")
+    dbname   := os.Getenv("DB_NAME")
+    sslmode  := os.Getenv("DB_SSLMODE")
 
 	log.Printf("Connecting to DB: host=%s port=%s user=%s dbname=%s", host, port, user, dbname)
 
@@ -27,7 +24,7 @@ func InitDB() *sql.DB {
         "host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
         host, port, user, password, dbname, sslmode,
     )
-	
+
 	db, err := sql.Open("postgres", dsn)
 	if err != nil {
 		log.Fatalf("Failed to open database: %v", err)
